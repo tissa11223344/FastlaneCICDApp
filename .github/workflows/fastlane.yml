@@ -39,6 +39,7 @@ jobs:
     runs-on: macos-latest
     env:
       MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+      FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
     steps:
       - uses: actions/checkout@v2
 
