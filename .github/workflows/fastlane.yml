@@ -37,6 +37,8 @@ on:
 jobs:
   build:
     runs-on: macos-latest
+    env:
+      MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
     steps:
       - uses: actions/checkout@v2
 
@@ -52,9 +54,7 @@ jobs:
         run: bundle install
 
       - name: Set Match Password
-        run: echo "::set-env name=MATCH_PASSWORD::tissaProfile@"
+        run: echo "MATCH_PASSWORD=${{ secrets.MATCH_PASSWORD }}" >> .env
 
       - name: Run Fastlane
-        env:
-          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
         run: bundle exec fastlane beta
