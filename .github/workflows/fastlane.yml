@@ -27,6 +27,40 @@
 
 
 
+#name: Fastlane CI/CD
+#
+#on:
+#  push:
+#    branches:
+#      - main
+#
+#jobs:
+#  build:
+#    runs-on: macos-latest
+#    env:
+#      MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+#      FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+#    steps:
+#      - uses: actions/checkout@v2
+#
+#      - name: Setup Ruby
+#        uses: ruby/setup-ruby@v1
+#        with:
+#          ruby-version: '3.0'
+#
+#      - name: Install Bundler
+#        run: gem install bundler
+#
+#      - name: Install Dependencies
+#        run: bundle install
+#
+#      - name: Set Match Password
+#        run: echo "MATCH_PASSWORD=${{ secrets.MATCH_PASSWORD }}" >> .env
+#
+#      - name: Run Fastlane
+#        run: bundle exec fastlane beta
+
+
 name: Fastlane CI/CD
 
 on:
@@ -38,7 +72,7 @@ jobs:
   build:
     runs-on: macos-latest
     env:
-      MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+      APPLE_ID: ${{ secrets.APPLE_ID }}
       FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
     steps:
       - uses: actions/checkout@v2
@@ -54,8 +88,8 @@ jobs:
       - name: Install Dependencies
         run: bundle install
 
-      - name: Set Match Password
-        run: echo "MATCH_PASSWORD=${{ secrets.MATCH_PASSWORD }}" >> .env
+      - name: Set Apple ID Environment Variable
+        run: echo "FASTLANE_USER=$APPLE_ID" >> .env
 
       - name: Run Fastlane
         run: bundle exec fastlane beta
