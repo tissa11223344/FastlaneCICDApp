@@ -61,7 +61,7 @@
 #        run: bundle exec fastlane beta
 
 
-name: Fastlane CI/CD file
+name: Fastlane CI/CD
 
 on:
   push:
